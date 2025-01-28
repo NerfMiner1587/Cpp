@@ -1,0 +1,112 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+#include <algorithm>
+using namespace std;
+const int MAX_INCORRECT = 6;
+char incorrect[MAX_INCORRECT];
+int numIncorrect = 0;
+int misses = 0;
+void displayHangman() {
+	cout << "\n";
+	switch (misses) {
+	case 0:
+		cout << "    ______\n";
+		cout << "     :  \|\n";
+		cout << "         |\n";
+		cout << "         |\n";
+		cout << "         |\n";
+		cout << "         |\n";
+		cout << "         |\n";
+		cout << "_________|_\n";
+		break;
+	case 1:
+		cout << "    ______\n";
+		cout << "     :  \|\n";
+		cout << "     O   |\n";
+		cout << "         |\n";
+		cout << "         |\n";
+		cout << "         |\n";
+		cout << "         |\n";
+		cout << "_________|_\n";
+		break;
+	case 2:
+		cout << "    ______\n";
+		cout << "     :  \|\n";
+		cout << "     O   |\n";
+		cout << "     |   |\n";
+		cout << "     |   |\n";
+		cout << "         |\n";
+		cout << "         |\n";
+		cout << "_________|_\n";
+		break;
+	case 3:
+		cout << "    ______\n";
+		cout << "     :  \|\n";
+		cout << "     O   |\n";
+		cout << "     |\  |\n";
+		cout << "     |   |\n";
+		cout << "         |\n";
+		cout << "         |\n";
+		cout << "_________|_\n";
+		break;
+	case 4:
+		cout << "    ______\n";
+		cout << "     :  \|\n";
+		cout << "     O   |\n";
+		cout << "    /|\  |\n";
+		cout << "     |   |\n";
+		cout << "         |\n";
+		cout << "         |\n";
+		cout << "_________|_\n";
+		break;
+	case 5:
+		cout << "    ______\n";
+		cout << "     :  \|\n";
+		cout << "     O   |\n";
+		cout << "    /|\  |\n";
+		cout << "     |   |\n";
+		cout << "      \  |\n";
+		cout << "         |\n";
+		cout << "_________|_\n";
+		break;
+	case 6:
+		cout << "    ______\n";
+		cout << "     :  \|\n";
+		cout << "     O   |\n";
+		cout << "    /|\  |\n";
+		cout << "     |   |\n";
+		cout << "    / \  |\n";
+		cout << "         |\n";
+		cout << "_________|_\n";
+		break;
+	}
+}
+void display(string guessedWord) {
+	cout << "\n Word: ";
+	for (int i = 0; i < guessedWord.length(); i++) {
+		cout << guessedWord[i] << ' ';
+	}
+	cout << "\n Incorrect guesses: ";
+	for (int i = 0; i < 7; i++) {
+		cout << incorrect[i] << ' ';
+	}
+	cout << "\n Misses left: " << MAX_INCORRECT - misses << "\n";
+	displayHangman();
+}
+string processGuess(char guess, string word, string guessedWord) {
+	bool isCorrect = false;
+	for (int i = 0; i < word.length(); i++) {
+		if (word[i] == guess && guessedWord[i] == '_') {
+			guessedWord[i] = guess;
+			isCorrect = true;
+		}
+	}
+	if (!isCorrect) {
+		bool alreadyGuessed = false;
+		for (int i = 0; i < numIncorrect; i++) {
+
+		}
+	}
+}
