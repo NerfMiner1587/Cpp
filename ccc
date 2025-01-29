@@ -13,8 +13,7 @@ void displayHangman() {
 	switch (misses) {
 	case 0:
 		cout << "    ______\n";
-		cout << "     :  \|\n";
-		cout << "         |\n";
+		cout << "      : \\|\n";
 		cout << "         |\n";
 		cout << "         |\n";
 		cout << "         |\n";
@@ -23,9 +22,8 @@ void displayHangman() {
 		break;
 	case 1:
 		cout << "    ______\n";
-		cout << "     :  \|\n";
+		cout << "     :  \\|\n";
 		cout << "     O   |\n";
-		cout << "         |\n";
 		cout << "         |\n";
 		cout << "         |\n";
 		cout << "         |\n";
@@ -33,9 +31,8 @@ void displayHangman() {
 		break;
 	case 2:
 		cout << "    ______\n";
-		cout << "     :  \|\n";
+		cout << "     :  \\|\n";
 		cout << "     O   |\n";
-		cout << "     |   |\n";
 		cout << "     |   |\n";
 		cout << "         |\n";
 		cout << "         |\n";
@@ -43,41 +40,37 @@ void displayHangman() {
 		break;
 	case 3:
 		cout << "    ______\n";
-		cout << "     :  \|\n";
+		cout << "     :  \\|\n";
 		cout << "     O   |\n";
-		cout << "     |\  |\n";
-		cout << "     |   |\n";
+		cout << "     |\\  |\n";
 		cout << "         |\n";
 		cout << "         |\n";
 		cout << "_________|_\n";
 		break;
 	case 4:
 		cout << "    ______\n";
-		cout << "     :  \|\n";
+		cout << "     :  \\|\n";
 		cout << "     O   |\n";
-		cout << "    /|\  |\n";
-		cout << "     |   |\n";
+		cout << "    /|\\  |\n";
 		cout << "         |\n";
 		cout << "         |\n";
 		cout << "_________|_\n";
 		break;
 	case 5:
 		cout << "    ______\n";
-		cout << "     :  \|\n";
+		cout << "     :  \\|\n";
 		cout << "     O   |\n";
-		cout << "    /|\  |\n";
-		cout << "     |   |\n";
-		cout << "      \  |\n";
+		cout << "    /|\\  |\n";
+		cout << "      \\  |\n";
 		cout << "         |\n";
 		cout << "_________|_\n";
 		break;
 	case 6:
 		cout << "    ______\n";
-		cout << "     :  \|\n";
+		cout << "     :  \\|\n";
 		cout << "     O   |\n";
-		cout << "    /|\  |\n";
-		cout << "     |   |\n";
-		cout << "    / \  |\n";
+		cout << "    /|\\  |\n";
+		cout << "    / \\  |\n";
 		cout << "         |\n";
 		cout << "_________|_\n";
 		break;
@@ -89,7 +82,7 @@ void display(string guessedWord) {
 		cout << guessedWord[i] << ' ';
 	}
 	cout << "\n Incorrect guesses: ";
-	for (int i = 0; i < 7; i++) {
+	for (int i = 0; i < 6; i++) {
 		cout << incorrect[i] << ' ';
 	}
 	cout << "\n Misses left: " << MAX_INCORRECT - misses << "\n";
@@ -106,7 +99,47 @@ string processGuess(char guess, string word, string guessedWord) {
 	if (!isCorrect) {
 		bool alreadyGuessed = false;
 		for (int i = 0; i < numIncorrect; i++) {
-
+			if (incorrect[i] == guess) {
+				alreadyGuessed = true;
+				break;
+			}
+		}
+		if (!alreadyGuessed) {
+			incorrect[numIncorrect++] = guess;
+			misses += 1;
 		}
 	}
+	return guessedWord;
+}
+int main() {
+	string wordList[] = { "infinite", "theslimshadylp", "themarshallmatherslp", "theeminemshow", "encore", "relapse", "recovery", "themarshallmatherslptwo", "revival", "kamikaze", "musictobemurderedby", "thedeathofslimshady" };
+	srand(time(0));
+	string word = wordList[rand() % 5];
+	string guessedWord(word.length(), '_');
+
+	cout << "Welcome to Hangman!\n";
+
+	// Game loop runs until the player runs out of guesses or guesses the word 
+	while (misses < MAX_INCORRECT && guessedWord != word) {
+		display(guessedWord); // Display the current state of the game
+		cout << "Enter your guess: ";
+		char guess;
+		cin >> guess; // Get the player's guess
+		string oldGuessedword = guessedWord; // Keep track of the word before the guess 
+		guessedWord = processGuess (guess, word, guessedWord); // Process the guess
+		if (guessedWord == oldGuessedword) {
+			cout << "Oops! That letter isn't in there!\n"; // Inform the player the guess was wrong
+	}
+		else {
+			cout << "Good guess!\n"; // Congratulate the player on a correct guess
+		}
+	} //end of game loop!
+	if (guessedWord == word) {
+		cout << "Congratulations! You guessed the word: " << word << "\n";
+	}
+	else {
+		cout << "Game Over! The word was: " << word << "\n";
+	}
+
+	return 0;
 }
