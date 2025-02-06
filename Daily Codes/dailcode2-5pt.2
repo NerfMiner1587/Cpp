@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+bool isVowel(char letter);
+
+int main() {
+
+	bool answer;
+
+
+	answer = isVowel('v');
+	cout << answer;
+}
+
+bool isVowel(char letter) {
+
+	if (letter == 'a')
+		return true;
+	else if (letter == 'e')
+		return true;
+	else if (letter == 'i')
+		return true;
+	else if (letter == 'o')
+		return true;
+	else if (letter == 'u')
+		return true;
+	else
+		return false;
+
+
+}
