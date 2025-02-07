@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+float PyramidVolume(int x, int y, int z);
+int main() {
+
+	int answer;
+	answer = PyramidVolume(1, 2, 3);
+	cout << answer;
+}
+
+float PyramidVolume(int x, int y, int z) {
+	return x * y * z / 3;
+}
