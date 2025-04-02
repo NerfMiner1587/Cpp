@@ -1,0 +1,32 @@
+#include <iostream>
+#include <Windows.h>
+using namespace std;
+
+void beeeps(int num);
+
+int main() {
+
+	srand(time(NULL));
+	int nput;
+	cin >> nput;
+	beeeps(nput);
+
+}
+
+
+void beeeps(int num) {
+	cout << "running function" << endl;
+	
+	for (int i = 0; i < num; i++) {
+		int numone = rand() % 1000+300;
+		int numtwo = rand() % 1000+300;
+		cout << i;
+		Beep(numone, numtwo);
+
+	}
+
+
+
+
+
+}
