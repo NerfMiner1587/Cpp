@@ -112,7 +112,7 @@ string processGuess(char guess, string word, string guessedWord) {
 	return guessedWord;
 }
 int main() {
-	string wordList[] = { "infinite", "theslimshadylp", "themarshallmatherslp", "theeminemshow", "encore", "relapse", "recovery", "themarshallmatherslptwo", "revival", "kamikaze", "musictobemurderedby", "thedeathofslimshady" };
+	string wordList[] = {"pain", "exist", "thin", "parched", "telling", "deranged", "expensive", "waste", "harbor", "consist", "flash", "ask", "enlighten", "swear", "silly", "comment", "trail", "sabotage", "kindly", "hypnotize"};
 	srand(time(0));
 	string word = wordList[rand() % 5];
 	string guessedWord(word.length(), '_');
@@ -126,10 +126,10 @@ int main() {
 		char guess;
 		cin >> guess; // Get the player's guess
 		string oldGuessedword = guessedWord; // Keep track of the word before the guess 
-		guessedWord = processGuess (guess, word, guessedWord); // Process the guess
+		guessedWord = processGuess(guess, word, guessedWord); // Process the guess
 		if (guessedWord == oldGuessedword) {
 			cout << "Oops! That letter isn't in there!\n"; // Inform the player the guess was wrong
-	}
+		}
 		else {
 			cout << "Good guess!\n"; // Congratulate the player on a correct guess
 		}
